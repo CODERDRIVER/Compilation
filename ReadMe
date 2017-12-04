@@ -1,0 +1,36 @@
+#模式的正规则表示
+letter = [a-zA-Z]
+digit=[0-9]
+
+COMMENT="//" | "--"
+WHITE_SPACE = (" "|\t|\n)+
+SEMICO = ";"
+L_BRACKET ="("
+R_BRACKET = ")"
+COMMA = ","
+PLUS ="+"
+MINUS ="-"
+MUL ="*"
+DIV ="/"
+POWER = "**"
+CONST_ID = digit+("."digit*)?
+ID = letter+(letter|digit)*
+
+
+文件目录解析：
+com.lxy.lexical:
+    此目录下为词法分析器的全部文件，
+    其中bean为词法分析其中所用到的javabean对象
+    interface 为词法分析其为外接提供的接口
+    test为测试类，用来测试一些简单api的使用
+    utils是词法分析其所用到的工具类
+    Function为词法分析其用到的一些方法 FunctionImpl为其实现类
+    Main函数为词法分析器测试程序的入口点
+com.lxy.grammar
+    此目录为语法分析器额全部文件
+     其中errorHandler为错误处理包
+     GrammarInterface为语法分析器提供的接口,GrammarInterface为其实现类
+     javabean为语法分析器所用到的对象
+     recursiveProgramInterface为语法分析器中所用到的所有递归子程序的所有方法的接口，..Impl为其实现类
+     Utils里面包含有语法树的构以及其他辅助程序
+
