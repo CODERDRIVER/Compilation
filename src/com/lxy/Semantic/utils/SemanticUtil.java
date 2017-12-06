@@ -72,8 +72,15 @@ public class SemanticUtil {
     //计算点的坐标值(Expression,Expression)
     public static void calcCoordinate(ExprNode xExprNode,ExprNode yExprNode)
     {
+        /**
+         * 以（0，0）为基准，旋转相应的角度
+         */
         x = getExprValue(xExprNode)*Main.scale_x+Main.origin_x;
         y = getExprValue(yExprNode)*Main.scale_y+Main.origin_y;
+        double z = Math.sqrt(x*x+y*y);
+        double rot = Math.acos(x/z);
+        x = z*Math.cos(rot-Main.rot_angle);
+        y = z*Math.sin(rot-Main.rot_angle);
     }
 
     //绘制一个像素点,给出点的横纵坐标
