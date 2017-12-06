@@ -1,5 +1,7 @@
 package com.lxy.grammar.recursiveProgramInterfaceImpl;
 
+import com.lxy.Semantic.utils.SemanticUtil;
+import com.lxy.Semantic.utils.SetValueUtil;
 import com.lxy.grammar.Main;
 import com.lxy.grammar.errorHandler.SyntaxError;
 import com.lxy.grammar.grammarInterfaceImpl.GrammarInterfaceImpl;
@@ -60,18 +62,24 @@ public class RecursiveProgramInterfaceImpl implements RecursiveProgramInterface 
      */
     @Override
     public void originStatement() {
-
+        double x,y;
         System.out.println("enter in originStatement");
         ExprNode xExprNode,yExprNode;
         GrammarTree.matchToken(TokenType.ORIGIN);
         GrammarTree.matchToken(TokenType.IS);
         GrammarTree.matchToken(TokenType.L_BRACKET);
         xExprNode = expression();
+        //获得初始的x坐标值
+        x= SemanticUtil.getExprValue(xExprNode);
         GrammarTree.printSyntaxTree(xExprNode,1);
         GrammarTree.matchToken(TokenType.COMMA);
         yExprNode = expression();
+        //获得初始的y坐标值
+        y = SemanticUtil.getExprValue(yExprNode);
         GrammarTree.printSyntaxTree(yExprNode,1);
         GrammarTree.matchToken(TokenType.R_BRACKET);
+        //设置x,y的值
+        SetValueUtil.setOrigin(x,y);
         System.out.println("exit from originStatement");
     }
 
@@ -80,12 +88,15 @@ public class RecursiveProgramInterfaceImpl implements RecursiveProgramInterface 
      */
     @Override
     public void rotStatement() {
+        double rot;
         System.out.println("enter in rotStatement");
         ExprNode exprNode;
         GrammarTree.matchToken(TokenType.ROT);
         GrammarTree.matchToken(TokenType.IS);
         exprNode = expression();
+        rot = SemanticUtil.getExprValue(exprNode);
         GrammarTree.printSyntaxTree(exprNode,1);
+        SetValueUtil.setRot(rot);
         System.out.println("exit from rotStatement");
     }
 
@@ -94,17 +105,21 @@ public class RecursiveProgramInterfaceImpl implements RecursiveProgramInterface 
      */
     @Override
     public void scaleStatement() {
+        double xSacle,yScale;
         System.out.println("enter in scaleStatement");
         ExprNode xExprNode,yExprNode;
         GrammarTree.matchToken(TokenType.SCALE);
         GrammarTree.matchToken(TokenType.IS);
         GrammarTree.matchToken(TokenType.L_BRACKET);
         xExprNode = expression();
+        xSacle = SemanticUtil.getExprValue(xExprNode);
         GrammarTree.printSyntaxTree(xExprNode,1);
         GrammarTree.matchToken(TokenType.COMMA);
         yExprNode = expression();
+        yScale = SemanticUtil.getExprValue(yExprNode);
         GrammarTree.printSyntaxTree(yExprNode,1);
         GrammarTree.matchToken(TokenType.R_BRACKET);
+        SetValueUtil.setScale(xSacle,yScale);
         System.out.println("exit from scaleStatment");
     }
 
@@ -115,7 +130,7 @@ public class RecursiveProgramInterfaceImpl implements RecursiveProgramInterface 
      */
     @Override
     public void forStatement() {
-
+        double start,end,step;
         System.out.println("enter in forStatement");
         ExprNode startExprNode,endExprNode,stepExprNode,xExprNode,yExprNode;
 
@@ -127,16 +142,19 @@ public class RecursiveProgramInterfaceImpl implements RecursiveProgramInterface 
         System.out.println("matchtoken FROM");
         //起点表达式的语法树
         startExprNode = expression();
+        start = SemanticUtil.getExprValue(startExprNode);
         GrammarTree.printSyntaxTree(startExprNode,1);
         GrammarTree.matchToken(TokenType.TO);
         System.out.println("matchtoken TO");
         //终点表达式的语法树
         endExprNode = expression();
+        end = SemanticUtil.getExprValue(endExprNode);
         GrammarTree.printSyntaxTree(endExprNode,1);
         GrammarTree.matchToken(TokenType.STEP);
         System.out.println("matchtoken STEP");
         //步长表达式的语法树
         stepExprNode = expression();
+        step = SemanticUtil.getExprValue(stepExprNode);
         GrammarTree.printSyntaxTree(stepExprNode,1);
         GrammarTree.matchToken(TokenType.DRAW);
         System.out.println("matchtoken DRAW");
@@ -152,6 +170,7 @@ public class RecursiveProgramInterfaceImpl implements RecursiveProgramInterface 
         GrammarTree.printSyntaxTree(yExprNode,1);
         GrammarTree.matchToken(TokenType.R_BRACKET);
         System.out.println("matchtoken R_BRACKET");
+        SemanticUtil.drawLoop(start,end,step,xExprNode,yExprNode);
         System.out.println("exit from forStatement");
     }
 

@@ -60,7 +60,7 @@ public class Main {
 //		Function f = new FunctionImpl();
 		LexicalInterface f = new LexicalInterfaceImpl();
 		//调用初始化方法
-		String fileName = "conf/test.txt";
+		String fileName = "conf/test1.txt";
 		if(!f.InitScanner(fileName))
 		{
 			System.out.println("打开文件出错");

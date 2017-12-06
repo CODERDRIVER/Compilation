@@ -98,12 +98,14 @@ public class LexicalInterfaceImpl implements LexicalInterface {
 						break;
 					}
 				}
+
 				//判断是不是小数
-				if(".".equals(ch))
+				if('.'==ch)
 				{
 					f.addCharTokenString(ch);
 					for(;;)
 					{
+						ch = f.getChar();
 						if(Utils.isDigit(ch))
 						{
 							f.addCharTokenString(ch);

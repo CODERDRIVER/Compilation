@@ -1,1 +1,8 @@
-FOR T FROM 0 TO 2*PI STEP PI/50 DRAW (cos(T),sin(T)); --comments
+origin IS (50,400);
+ROT IS 0;
+SCALE IS (2,1);
+FOR T FROM 0 TO 300 STEP  1 DRAW (0,-T);
+FOR T FROM 0 TO 300 STEP  1 DRAW (T,0);
+FOR T FROM 0 TO 300 STEP  1 DRAW (T,-T);
+scale is (2,0.1);
+for T from 0 to 55 step 1 draw (T,-(T*T));
